@@ -1,5 +1,6 @@
 package com.wordpress.tests;
 
+import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeMethod;
@@ -15,6 +16,7 @@ public class WordpressTests extends TestNgTestBase {
     @BeforeMethod
     public void logIntoWordpress(){
         driver.get(" https://wordpress.com/wp-login.php");
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
         pages.loginpage(driver).LoginwithUsername("testautomation728","!234tesT;");
         driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
@@ -41,12 +43,25 @@ public class WordpressTests extends TestNgTestBase {
 
     }
 
-    @Test(description = "Edit profile data")
-    public void editProfile(){
+    @Test(description = "Edit profile first name")
+    public void editProfileFirstName(){
+        pages.homepage(driver).NavigatetoMyProfilePage();
+        pages.profilePage(driver).editFirstName("newFirstName");
+        Assert.assertEquals("newFirstName",pages.profilePage(driver).getFirstName());
+    }
+
+    @Test(description = "Edit profile last name")
+    public void editProfileLastName(){
+        pages.homepage(driver).NavigatetoMyProfilePage();
+        pages.profilePage(driver).editLastName("newLastName");
+        Assert.assertEquals("newLastName",pages.profilePage(driver).getLastName());
+    }
+
+    @Test(description = "Edit profile display name")
+    public void editProfileDisplayName(){
         pages.homepage(driver).NavigatetoMyProfilePage();
         pages.profilePage(driver).editDisplayName("newDisplayName");
-        pages.profilePage(driver).editFirstName("newFirstName");
-        pages.profilePage(driver).editLastName("newLastName");
+        Assert.assertEquals("newDisplayName",pages.profilePage(driver).getDisplayName());
     }
 
     @AfterMethod

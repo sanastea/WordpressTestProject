@@ -20,6 +20,8 @@ public class LoginPage extends Page{
     @FindBy (id = "wp-submit")
     private WebElement submitButton;
 
+    //Object[][] credentials = ExcelUtils.getTableArray("/Users/asadreev/IdeaProjects/WordpressTests/src/test/java/com/wordpress/tests/util","Sheet1")
+
     public LoginPage(WebDriver driver) {
         super(driver);
         PageFactory.initElements(driver, this);

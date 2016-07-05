@@ -4,7 +4,6 @@ import com.wordpress.tests.util.Log;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 
 import java.util.concurrent.TimeUnit;
 
@@ -25,17 +24,15 @@ public class HomePage extends Page {
   }
 
 
-  public NewPostPage NavigatetoCreatenewPostPage(){
+  public void NavigatetoCreatenewPostPage(){
     Log.info("Navigate to create new post page");
     createNewPostLink.click();
-    return  PageFactory.initElements(driver,NewPostPage.class);
   }
 
-  public ProfilePage NavigatetoMyProfilePage(){
+  public void NavigatetoMyProfilePage(){
     Log.info("Navigate to my profile page");
-    driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+    driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
     myProfileLink.click();
-    return PageFactory.initElements(driver,ProfilePage.class);
   }
 
 

@@ -5,8 +5,10 @@
     <classes>
       <class name="com.wordpress.tests.WordpressTests">
       <methods>
-        <include name="editProfile"/>
-        <include name="Add new post"/>
+        <include name="addNewPost"/>
+        <include name="editProfileFirstName"/>
+        <include name="editProfileLastName"/>
+        <include name="editProfileDisplayName"/>
       </methods>
     </class>
     </classes>
