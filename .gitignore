@@ -1,4 +1,4 @@
 .idea/*
 poi-3.14
 target/test-classes/*
-target/com/wordpress/tests/*
+target/com/*
