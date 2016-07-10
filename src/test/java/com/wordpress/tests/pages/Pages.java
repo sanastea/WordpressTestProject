@@ -12,10 +12,6 @@ public class Pages {
         return PageFactory.initElements(driver,LoginPage.class);
     }
 
-    public static NewPostPage newpostpage(WebDriver driver){
-        return PageFactory.initElements(driver,NewPostPage.class);
-    }
-
 
     public static ProfilePage profilePage(WebDriver driver){
         return PageFactory.initElements(driver,ProfilePage.class);

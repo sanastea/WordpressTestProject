@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by asadreev on 7/3/16.
  */
@@ -32,9 +34,20 @@ public class ProfilePage extends Page{
     @CacheLookup
     private WebElement signOutButton;
 
+    @FindBy (css = ".notice__text")
+    private WebElement successfulMessage;
+
+
 
     public ProfilePage(WebDriver webDriver) {
         super(webDriver);
+    }
+
+    public String saveProfileDetails(){
+        Log.info("Saving Profile details");
+        saveProfileDetailsButton.click();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
+        return successfulMessage.getText();
     }
 
 
@@ -42,8 +55,6 @@ public class ProfilePage extends Page{
         Log.info("Set first name to new value: " +newFirstName);
         firstNameInput.clear();
         firstNameInput.sendKeys(newFirstName);
-        saveProfileDetailsButton.click();
-        saveProfileDetailsButton.isEnabled();
     }
 
     public String getFirstName(){
@@ -55,8 +66,6 @@ public class ProfilePage extends Page{
         Log.info("Set last name to new value: " +newLastName);
         lastNameInput.clear();
         lastNameInput.sendKeys(newLastName);
-        saveProfileDetailsButton.click();
-        saveProfileDetailsButton.isEnabled();
     }
 
     public String getLastName(){
@@ -68,8 +77,6 @@ public class ProfilePage extends Page{
         Log.info("Set display name to new value: " +newDisplayName);
         displayNameInput.clear();
         displayNameInput.sendKeys(newDisplayName);
-        saveProfileDetailsButton.click();
-        saveProfileDetailsButton.isEnabled();
     }
 
     public String getDisplayName(){
@@ -80,6 +87,7 @@ public class ProfilePage extends Page{
     public void signOutWordpress(){
         Log.info("Log Out from Wordpress");
         signOutButton.click();
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
 

@@ -6,6 +6,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Created by asadreev on 7/3/16.
  */
@@ -20,7 +22,9 @@ public class LoginPage extends Page{
     @FindBy (id = "wp-submit")
     private WebElement submitButton;
 
-    //Object[][] credentials = ExcelUtils.getTableArray("/Users/asadreev/IdeaProjects/WordpressTests/src/test/java/com/wordpress/tests/util","Sheet1")
+    @FindBy (id = "login_error")
+    private WebElement loginErrorMessage;
+
 
     public LoginPage(WebDriver driver) {
         super(driver);
@@ -28,19 +32,23 @@ public class LoginPage extends Page{
         Log.info("Wordpress Login page was created");
     }
 
-    public HomePage LoginwithUsername(String username, String password){
-        Log.info("Log into Wordpress using username: " +username+ " and password: "+password);
+    public void logInWordpress(String username, String password){
+        Log.info("Log into Wordpress using username(email): " +username+ " and password: "+password);
+        userLogin.clear();
+        userPassword.clear();
         userLogin.sendKeys(username);
         userPassword.sendKeys(password);
         submitButton.click();
-        return PageFactory.initElements(driver,HomePage.class);
+        driver.manage().timeouts().implicitlyWait(5, TimeUnit.SECONDS);
     }
 
-    public HomePage LoginwithEmail(String email, String password){
-        Log.info("Log into Wordpress using email: " +email+ " and password: "+password);
-        userLogin.sendKeys(email);
+    public String loginWithWrongCredentials(String username, String password){
+        Log.info("Log into Wordpress using wrong credentials: " +username+ " and password: "+password);
+        userLogin.clear();
+        userPassword.clear();
+        userLogin.sendKeys(username);
         userPassword.sendKeys(password);
         submitButton.click();
-        return PageFactory.initElements(driver,HomePage.class);
+        return loginErrorMessage.getText();
     }
 }

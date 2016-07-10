@@ -1,4 +1,5 @@
 package com.wordpress.tests.pages;
+import com.wordpress.tests.util.Log;
 import org.openqa.selenium.WebDriver;
 
 
@@ -7,7 +8,7 @@ import org.openqa.selenium.WebDriver;
  */
 public abstract class Page {
 
-  protected WebDriver driver;
+  public WebDriver driver;
 
   /*
    * Constructor injecting the WebDriver interface
@@ -19,7 +20,9 @@ public abstract class Page {
   }
 
   public String getTitle() {
+    Log.info("Get page title: " +driver.getTitle());
     return driver.getTitle();
+
   }
 
 }

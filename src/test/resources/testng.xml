@@ -3,14 +3,20 @@
 <suite name="Tests" verbose="5">
   <test name="Test1">
     <classes>
-      <class name="com.wordpress.tests.WordpressTests">
-      <methods>
-        <include name="addNewPost"/>
-        <include name="editProfileFirstName"/>
-        <include name="editProfileLastName"/>
-        <include name="editProfileDisplayName"/>
-      </methods>
-    </class>
+        <class name="com.wordpress.tests.LoginTests">
+            <methods>
+                <include name="logInwithUserName"/>
+                <include name="logInwithEmail"/>
+                <include name="logInWithWrongCredentials"/>
+                </methods>
+        </class>
+        <class name = "com.wordpress.tests.ProfileTests">
+           <methods>
+               <include name="editProfileFirstName"/>
+               <include name="editProfileLastName"/>
+               <include name="editProfileDisplayName"/>
+           </methods>
+        </class>
     </classes>
   </test>  
 </suite>
