@@ -3,3 +3,4 @@ poi-3.14
 target/test-classes/*
 target/com/*
 .DS_Store
+/src/main*
